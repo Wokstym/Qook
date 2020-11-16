@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/ingredient_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/recipe_meal_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        tools:text="Śniadanie" />
+
+    <TextView
+        android:id="@+id/recipe_prep_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        tools:text="10" />
+
+    <TextView
+        android:id="@+id/recipe_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        tools:text="2.50" />
+
+    <TextView
+        android:id="@+id/recipe_preparation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        tools:text="Wszystkie składniki oprócz wafli zblendować ze sobą.
+ W razie potrzeby do koktajlu można dolać wody, aby uzyskać bardziej rzadką konsystencję.
+ Masło orzechowe może być z orzeszków ziemnych (minimum 95% orzeszków ziemnych) lub z innych orzechów.
+ Wafle ryżowe zjeść osobno." />
+
+
+    <TextView
+        android:id="@+id/recipe_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        tools:text="Orzechowy koktajl" />
+
+</LinearLayout>
+

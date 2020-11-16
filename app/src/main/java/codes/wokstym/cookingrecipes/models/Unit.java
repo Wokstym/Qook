@@ -1,4 +1,6 @@
-package codes.wokstym.cookingrecipes;
+package codes.wokstym.cookingrecipes.models;
+
+import com.fasterxml.jackson.annotation.JsonValue;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,5 +18,6 @@ public enum Unit {
     ;
 
 
+    @JsonValue
     private final String name;
 }

@@ -1,5 +1,6 @@
-package codes.wokstym.cookingrecipes;
+package codes.wokstym.cookingrecipes.models;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import lombok.AllArgsConstructor;
@@ -13,10 +14,10 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class IngredientDto {
+public class IngredientDto implements Serializable {
 
-    private UUID ID;
+    private UUID id;
     private String name;
-    private int amount;
     private Unit unit;
+    private int amount;
 }
