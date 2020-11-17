@@ -25,8 +25,9 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'RecipesURL', '\"http://10.0.2.2:2173/\"'
+            buildConfigField 'String', 'RecipesURL', '\"https://recipes-wokstym.herokuapp.com/\"'
         }
 
         debug {
