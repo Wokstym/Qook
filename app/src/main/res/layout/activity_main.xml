@@ -6,22 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ProgressBar
-        android:layout_weight="1"
-        android:id="@+id/progress_bar"
-        android:visibility="gone"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/recipe_list_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minHeight="40dp"
-        android:minWidth="40dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ListView
-        android:id="@+id/recipe_list_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:text="@string/recipe_list" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,17 +4,17 @@ import android.util.Log;
 
 import java.util.List;
 
-import codes.wokstym.cookingrecipes.MainActivity;
 import codes.wokstym.cookingrecipes.models.RecipeDto;
 import codes.wokstym.cookingrecipes.service.RecipeService;
+import codes.wokstym.cookingrecipes.views.RecipeListActivity;
 import retrofit2.Call;
 import retrofit2.Response;
 
 
 public class GetRecipesTask extends BackendTask<List<RecipeDto>, RecipeService> {
-    private final MainActivity responseActivity;
+    private final RecipeListActivity responseActivity;
 
-    public GetRecipesTask(MainActivity responseActivity) {
+    public GetRecipesTask(RecipeListActivity responseActivity) {
         this.responseActivity = responseActivity;
     }
 
