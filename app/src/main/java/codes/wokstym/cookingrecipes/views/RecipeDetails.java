@@ -27,7 +27,5 @@ public class RecipeDetails extends Activity {
         binding.recipePrepTime.setText(Integer.toString(recipeDto.getPrepTime()));
         binding.recipePrice.setText(recipeDto.getPrice().toString());
         binding.ingredientListView.setAdapter(new IngredientAdapter(this, recipeDto.getIngredients()));
-
-
     }
 }

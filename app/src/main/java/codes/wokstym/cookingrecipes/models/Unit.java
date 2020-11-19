@@ -17,7 +17,6 @@ public enum Unit {
     HANDFUL("garść")
     ;
 
-
     @JsonValue
     private final String name;
 }
