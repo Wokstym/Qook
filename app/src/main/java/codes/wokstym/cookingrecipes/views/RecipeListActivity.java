@@ -35,7 +35,7 @@ public class RecipeListActivity extends Activity {
 
     public void showRecipes(List<RecipeDto> changesList) {
 
-        Collections.sort(changesList, (o1, o2) -> o1.getMealTime().compareTo(o2.getMealTime()));
+        Collections.sort(changesList, (o1, o2) -> o1.getMealTime().getOrder() - o2.getMealTime().getOrder());
 
         binding.recipeListView.setAdapter(new RecipeAdapter(this, changesList));
         binding.recipeListView.setOnItemClickListener((parent, view, position, id) -> {

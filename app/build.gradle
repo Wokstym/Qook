@@ -33,7 +33,7 @@ android {
         debug {
             applicationIdSuffix ".debug"
             debuggable true
-            buildConfigField 'String', 'RecipesURL', '\"https://recipes-wokstym.herokuapp.com/\"'
+            buildConfigField 'String', 'RecipesURL', '\"http://10.0.2.2:2173/\"'
         }
     }
 
