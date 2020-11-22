@@ -1,3 +1,5 @@
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/check_mark_bg" android:state_pressed="true" android:state_focused="true" android:state_selected="true" android:state_enabled="true" />
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:exitFadeDuration="100">
+
+    <item android:color="@color/highlighted" android:state_activated="true" />
+    <item android:color="@color/highlighted" android:state_pressed="true" />
 </selector>

@@ -42,6 +42,7 @@
         android:drawableStart="@drawable/ic_utensils"
         android:backgroundTint="#69a1ff"
         android:drawablePadding="10dp"
+        android:visibility="gone"
         android:paddingHorizontal="10dp"
         android:animateLayoutChanges="true" />
 
