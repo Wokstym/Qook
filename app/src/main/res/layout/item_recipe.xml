@@ -5,11 +5,11 @@
     android:id="@+id/recipe_list_item_parent"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:background="?android:attr/selectableItemBackground"
+    android:layout_marginStart="10dp"
+    android:background="@drawable/corners"
+    android:backgroundTint="@color/recipe_state"
     android:orientation="horizontal">
 
-
-    <!--    android:clipToOutline="true"-->
     <ImageView
         android:id="@+id/meal_time_icon"
         android:layout_width="64dp"
@@ -17,38 +17,37 @@
         android:layout_margin="8dp"
         android:background="@drawable/circle"
         android:contentDescription="@string/meal_time_icon"
-        android:elevation="5dp"
         android:padding="10dp"
         android:src="@drawable/ic_wine_glass"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/checkmark"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_margin="8dp"
-        android:visibility="gone"
         android:background="@drawable/circle"
-        android:backgroundTint="@color/LightGrey"
+        android:backgroundTint="@color/check_mark_bg"
         android:contentDescription="@string/meal_time_icon"
-        android:elevation="5dp"
         android:padding="10dp"
         android:src="@drawable/ic_check"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:tint="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginStart="84dp"
         android:layout_height="80dp"
+        android:layout_marginStart="84dp"
         android:gravity="center_vertical"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/meal_time_icon"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/recipe_title"
@@ -66,7 +65,6 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -74,11 +72,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:background="@drawable/circle"
-                android:backgroundTint="@color/white"
-                android:elevation="2dp"
-                android:paddingHorizontal="10dp"
+                android:layout_marginVertical="2dp"
                 android:paddingVertical="5dp">
 
                 <TextView
@@ -90,17 +84,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" min." />
+                    android:text=" min. / " />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
-                android:background="@drawable/circle"
-                android:backgroundTint="@color/white"
-                android:elevation="2dp"
-                android:paddingHorizontal="10dp"
                 android:paddingVertical="5dp">
 
 
@@ -117,8 +107,5 @@
             </LinearLayout>
 
         </LinearLayout>
-
-
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,12 +16,17 @@ import androidx.appcompat.view.ActionMode;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import codes.wokstym.cookingrecipes.R;
 import codes.wokstym.cookingrecipes.components.RecipeAdapter;
+import codes.wokstym.cookingrecipes.components.VerticalSpaceItemDecoration;
 import codes.wokstym.cookingrecipes.databinding.ActivityRecipeListBinding;
 import codes.wokstym.cookingrecipes.models.RecipeDto;
+import codes.wokstym.cookingrecipes.models.ShoppingListDto;
 import codes.wokstym.cookingrecipes.tasks.GetRecipesTask;
+import codes.wokstym.cookingrecipes.tasks.GetShoppingListTask;
 import codes.wokstym.cookingrecipes.utils.ComponentsUtils;
 
+import static codes.wokstym.cookingrecipes.utils.ConversionUtils.dpToPx;
 import static codes.wokstym.cookingrecipes.utils.ExtraUtils.RECIPE_EXTRA;
+import static codes.wokstym.cookingrecipes.utils.ExtraUtils.SHOPPING_LIST_EXTRA;
 
 public class RecipeListActivity extends AppCompatActivity {
 
@@ -93,6 +98,8 @@ public class RecipeListActivity extends AppCompatActivity {
     private void prepareRecipeRecyclerView() {
         binding.recipeRecyclerView.setAdapter(recipeAdapter);
         binding.recipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        VerticalSpaceItemDecoration dividerItemDecoration = new VerticalSpaceItemDecoration(dpToPx(5));
+        binding.recipeRecyclerView.addItemDecoration(dividerItemDecoration);
     }
 
     private void toggleActionBar(int position) {
@@ -121,7 +128,12 @@ public class RecipeListActivity extends AppCompatActivity {
 
     private void fetchShoppingList() {
         List<RecipeDto> selectedItemPositions = recipeAdapter.getSelectedItems();
-        Toast.makeText(RecipeListActivity.this, selectedItemPositions.stream().map(RecipeDto::getTitle).collect(Collectors.toList()).toString(), Toast.LENGTH_SHORT).show();
+        List<UUID> recipesUUIDs = selectedItemPositions.stream()
+                .map(RecipeDto::getId)
+                .collect(Collectors.toList());
+
+        showProgress();
+        new GetShoppingListTask(this).execute(recipesUUIDs);
     }
 
     public void hideProgress() {
@@ -132,11 +144,18 @@ public class RecipeListActivity extends AppCompatActivity {
         binding.progressBar.setVisibility(View.VISIBLE);
     }
 
+    public void showShoppingList(ShoppingListDto shoppingList) {
+        Intent intent = new Intent(this, ShoppingListActivity.class);
+        intent.putExtra(SHOPPING_LIST_EXTRA, shoppingList);
+        startActivity(intent);
+    }
+
     private class ActionCallback implements ActionMode.Callback {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
             ComponentsUtils.toggleStatusBarColor(RecipeListActivity.this, R.color.DarkSlateGray);
             mode.getMenuInflater().inflate(R.menu.menu, menu);
+            binding.recipeListButton.setVisibility(View.VISIBLE);
             return true;
         }
 
@@ -154,24 +173,9 @@ public class RecipeListActivity extends AppCompatActivity {
         public void onDestroyActionMode(ActionMode mode) {
             recipeAdapter.clearSelection();
             actionMode = null;
+            binding.recipeListButton.setVisibility(View.GONE);
             ComponentsUtils.toggleStatusBarColor(RecipeListActivity.this, R.color.colorPrimary);
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        } else {
-            Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
-        }
-        return super.onOptionsItemSelected(item);
     }
 
 }
