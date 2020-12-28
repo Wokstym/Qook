@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimary">#1a73e8</color>
+    <color name="colorPrimaryDark">#1a73e8</color>
     <color name="colorAccent">#03DAC5</color>
 
     <!-- Common -->
@@ -62,4 +62,7 @@
     <color name="meal_dinner">#659157</color>
     <color name="meal_snack">#90B8A9</color>
     <color name="meal_supper">#E05263</color>
+
+    <color name="highlighted">#e8f0fe</color>
+    <color name="check_mark_bg">#1a73e8</color>
 </resources>

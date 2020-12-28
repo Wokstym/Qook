@@ -2,4 +2,5 @@
     <string name="app_name">CookingRecipes</string>
     <string name="recipe_list">Lista przepisów</string>
     <string name="meal_time_icon">Meal time icon</string>
+    <string name="generate_shopping_list">Wygeneruj liste zakupów</string>
 </resources>

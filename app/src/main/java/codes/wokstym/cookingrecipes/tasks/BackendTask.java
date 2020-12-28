@@ -4,7 +4,10 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.concurrent.TimeUnit;
+
 import codes.wokstym.cookingrecipes.BuildConfig;
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -29,9 +32,16 @@ public abstract class BackendTask<T, S> implements Callback<T> {
                 .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
                 .create();
 
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(15, TimeUnit.SECONDS)
+                .readTimeout(15, TimeUnit.SECONDS)
+                .writeTimeout(15, TimeUnit.SECONDS)
+                .build();
+
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.RecipesURL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
                 .build();
     }
 
