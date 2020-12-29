@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CookingRecipes</string>
+    <string name="recipe_list">Recipe list</string>
+    <string name="generate_shopping_list">Generate shopping list</string>
+    <string name="breakfast_name">Breakfast</string>
+    <string name="second_breakfast_name">Second breakfast</string>
+    <string name="dinner_name">Dinner</string>
+    <string name="snack_name">Snack</string>
+    <string name="supper_name">Supper</string>
+</resources>

@@ -22,7 +22,7 @@ public class RecipeDetails extends Activity {
         RecipeDto recipeDto = (RecipeDto) getIntent().getSerializableExtra(RECIPE_EXTRA);
 
         binding.recipeTitle.setText(recipeDto.getTitle());
-        binding.recipeMealTime.setText(recipeDto.getMealTime().getName());
+        binding.recipeMealTime.setText(getString(recipeDto.getMealTime().getNameResourceId()));
         binding.recipePreparation.setText(recipeDto.getPreparation());
         binding.recipePrepTime.setText(Integer.toString(recipeDto.getPrepTime()));
         binding.recipePrice.setText(recipeDto.getPrice().toString());
