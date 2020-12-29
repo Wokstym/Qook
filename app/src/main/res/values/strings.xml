@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">CookingRecipes</string>
     <string name="recipe_list">Lista przepisów</string>
-    <string name="meal_time_icon">Meal time icon</string>
+    <string name="meal_time_icon" translatable="false">Meal time icon</string>
     <string name="generate_shopping_list">Wygeneruj liste zakupów</string>
+    <string name="breakfast_name">Śniadanie</string>
+    <string name="second_breakfast_name">Drugie Śniadanie</string>
+    <string name="dinner_name">Obiad</string>
+    <string name="snack_name">Przekąska</string>
+    <string name="supper_name">Kolacja</string>
 </resources>

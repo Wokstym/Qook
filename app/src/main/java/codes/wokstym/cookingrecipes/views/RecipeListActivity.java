@@ -6,14 +6,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.ActionMode;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import codes.wokstym.cookingrecipes.R;
 import codes.wokstym.cookingrecipes.components.RecipeAdapter;
 import codes.wokstym.cookingrecipes.components.VerticalSpaceItemDecoration;
@@ -51,7 +52,7 @@ public class RecipeListActivity extends AppCompatActivity {
 
     private void initSupportBar() {
         setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setTitle("Lista Przepisów");
+        getSupportActionBar().setTitle(getResources().getString(R.string.recipe_list));
     }
 
     private void initListeners() {
