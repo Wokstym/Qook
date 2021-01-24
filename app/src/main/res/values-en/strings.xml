@@ -8,4 +8,5 @@
     <string name="dinner_name">Dinner</string>
     <string name="snack_name">Snack</string>
     <string name="supper_name">Supper</string>
+    <string name="ingredients_label">Ingredients</string>
 </resources>

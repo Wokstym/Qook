@@ -8,4 +8,8 @@
     <string name="dinner_name">Obiad</string>
     <string name="snack_name">Przekąska</string>
     <string name="supper_name">Kolacja</string>
+    <string name="title_activity_recipe_details" translatable="false">RecipeDetails</string>
+    <string name="image" translatable="false">image</string>
+    <string name="divider" translatable="false">|</string>
+    <string name="ingredients_label">Składniki</string>
 </resources>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/recipe_image"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/image"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/placeholder" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-50dp"
+        android:background="@drawable/top_corners"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/recipe_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            tools:text="Orzechowy koktajl" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:showDividers="middle">
+            <!--            android:divider="@drawable/empty_tall_divider"-->
+
+
+            <TextView
+                android:id="@+id/recipe_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="15sp"
+                tools:text="2.50 PLN" />
+
+            <Space
+                android:layout_width="11dp"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="15sp"
+                android:text="@string/divider" />
+
+            <Space
+                android:layout_width="11dp"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:id="@+id/recipe_prep_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_gravity="center_horizontal"
+                tools:text="10 min." />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="20dp"
+            android:background="@color/LightGrey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ingredients_label"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/ingredient_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_ingredient" />
+
+        <TextView
+            android:id="@+id/recipe_preparation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            tools:text="Wszystkie składniki oprócz wafli zblendować ze sobą.
+ W razie potrzeby do koktajlu można dolać wody, aby uzyskać bardziej rzadką konsystencję.
+ Masło orzechowe może być z orzeszków ziemnych (minimum 95% orzeszków ziemnych) lub z innych orzechów.
+ Wafle ryżowe zjeść osobno." />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+

@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -73,7 +72,7 @@ public class RecipeListActivity extends AppCompatActivity {
     }
 
     private void sortRecipeList(List<RecipeDto> changesList) {
-        Collections.sort(changesList, (o1, o2) -> o1.getMealTime().getOrder() - o2.getMealTime().getOrder());
+        changesList.sort((o1, o2) -> o1.getMealTime().getOrder() - o2.getMealTime().getOrder());
     }
 
     private void prepareAdapter(List<RecipeDto> recipeList) {
