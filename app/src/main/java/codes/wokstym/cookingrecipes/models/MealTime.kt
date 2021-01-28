@@ -16,6 +16,4 @@ enum class MealTime(
     DINNER(R.string.dinner_name, 3, R.drawable.ic_drumstick_bite, R.color.meal_dinner),
     SNACK(R.string.snack_name, 4, R.drawable.ic_apple_alt, R.color.meal_snack),
     SUPPER(R.string.supper_name, 5, R.drawable.ic_wine_glass, R.color.meal_supper);
-
-
 }
