@@ -33,9 +33,9 @@ public abstract class BackendTask<T, S> implements Callback<T> {
                 .create();
 
         OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(15, TimeUnit.SECONDS)
-                .readTimeout(15, TimeUnit.SECONDS)
-                .writeTimeout(15, TimeUnit.SECONDS)
+                .connectTimeout(45, TimeUnit.SECONDS)
+                .readTimeout(45, TimeUnit.SECONDS)
+                .writeTimeout(45, TimeUnit.SECONDS)
                 .build();
 
         return new Retrofit.Builder()

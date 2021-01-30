@@ -6,6 +6,8 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import codes.wokstym.cookingrecipes.components.IngredientAdapter;
 import codes.wokstym.cookingrecipes.databinding.ShoppinListBinding;
 import codes.wokstym.cookingrecipes.models.ShoppingListDto;
@@ -24,7 +26,8 @@ public class ShoppingListActivity extends Activity {
 
         ShoppingListDto shoppingList = (ShoppingListDto) getIntent().getSerializableExtra(SHOPPING_LIST_EXTRA);
 
-        binding.ingredientListView.setAdapter(new IngredientAdapter(this, shoppingList.getIngredientList()));
+        binding.ingredientListView.setAdapter(new IngredientAdapter(shoppingList.getIngredientList()));
+        binding.ingredientListView.setLayoutManager(new LinearLayoutManager(this));
 
         binding.recipeListButton.setOnClickListener(v -> {
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
