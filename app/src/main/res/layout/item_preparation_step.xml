@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corners"
+    android:backgroundTint="#EBF8E1"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:showIn="@layout/activity_recipe_details">
+
+    <TextView
+        android:id="@+id/step"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#53984A"
+        android:textStyle="bold"
+        tools:text="Step %s" />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        tools:text="Peel onion, leaving root intact, then cut into eighths through the root end to make uniform wedges that are still held together at the base. Toss the wedges in a small bowl with 2 tablespoons oil and 1/4 teaspoon each salt and pepper." />
+
+</LinearLayout>

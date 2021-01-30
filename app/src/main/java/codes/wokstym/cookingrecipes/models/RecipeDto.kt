@@ -11,4 +11,7 @@ class RecipeDto(val id: UUID,
                 val prepTime: Int,
                 val price: BigDecimal,
                 val title: String,
-                val pictureUrl: String) : Serializable
+                val pictureUrl: String) : Serializable {
+
+    fun getPreparations(): List<String> = preparation.split("\n").map { it.trim() }
+}

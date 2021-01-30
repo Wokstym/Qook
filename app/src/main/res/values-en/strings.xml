@@ -9,4 +9,6 @@
     <string name="snack_name">Snack</string>
     <string name="supper_name">Supper</string>
     <string name="ingredients_label">Ingredients</string>
+    <string name="step_label">Step %s</string>
+    <string name="preparation_label">Preparation</string>
 </resources>
