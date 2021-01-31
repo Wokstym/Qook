@@ -11,7 +11,17 @@ class RecipeDto(val id: UUID,
                 val prepTime: Int,
                 val price: BigDecimal,
                 val title: String,
-                val pictureUrl: String) : Serializable {
+                val pictureUrl: String) : Serializable, Comparable<RecipeDto> {
 
     fun getPreparations(): List<String> = preparation.split("\n").map { it.trim() }
+
+    override fun compareTo(other: RecipeDto): Int {
+        if (this.id == other.id)
+            return 0
+
+        if (this.mealTime.order != other.mealTime.order)
+            return this.mealTime.order - other.mealTime.order
+
+        return this.title.compareTo(other.title)
+    }
 }

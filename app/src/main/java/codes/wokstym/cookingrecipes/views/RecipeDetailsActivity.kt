@@ -20,7 +20,7 @@ import com.google.android.material.appbar.AppBarLayout
 import com.squareup.picasso.Picasso
 import java.text.DecimalFormat
 
-class RecipeDetails : AppCompatActivity() {
+class RecipeDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRecipeDetailsBinding
     private lateinit var recipeDto: RecipeDto
@@ -35,13 +35,13 @@ class RecipeDetails : AppCompatActivity() {
         fun bindViews() {
             fun bindIngredientsList() = binding.ingredientListView.apply {
                 adapter = IngredientAdapter(recipeDto.ingredients)
-                layoutManager = LinearLayoutManager(this@RecipeDetails)
+                layoutManager = LinearLayoutManager(this@RecipeDetailsActivity)
                 addVerticalSpaceDivider(5)
             }
 
             fun bindPreparationSteps() = binding.ingredientPreparationSteps.apply {
                 adapter = StepsAdapter(recipeDto.getPreparations())
-                layoutManager = LinearLayoutManager(this@RecipeDetails)
+                layoutManager = LinearLayoutManager(this@RecipeDetailsActivity)
                 addVerticalSpaceDivider(10)
             }
             binding.recipeTitle.text = recipeDto.title

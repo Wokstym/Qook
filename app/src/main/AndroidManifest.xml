@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".views.RecipeDetails"
+            android:name=".views.RecipeDetailsActivity"
             android:theme="@style/AppTheme.TranslucentActionBar"
             android:label="@string/title_activity_recipe_details" />
         <activity android:name=".MainActivity">
