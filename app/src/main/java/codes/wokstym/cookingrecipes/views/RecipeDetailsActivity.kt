@@ -11,16 +11,12 @@ import codes.wokstym.cookingrecipes.components.IngredientAdapter
 import codes.wokstym.cookingrecipes.components.StepsAdapter
 import codes.wokstym.cookingrecipes.databinding.ActivityRecipeDetailsBinding
 import codes.wokstym.cookingrecipes.models.RecipeDto
-import codes.wokstym.cookingrecipes.utils.ExtraUtils.RECIPE_EXTRA
-import codes.wokstym.cookingrecipes.utils.addVerticalSpaceDivider
-import codes.wokstym.cookingrecipes.utils.recipe
-import codes.wokstym.cookingrecipes.utils.setTopMargin
-import codes.wokstym.cookingrecipes.utils.setTopPadding
+import codes.wokstym.cookingrecipes.utils.*
 import com.google.android.material.appbar.AppBarLayout
 import com.squareup.picasso.Picasso
 import java.text.DecimalFormat
 
-class RecipeDetails : AppCompatActivity() {
+class RecipeDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRecipeDetailsBinding
     private lateinit var recipeDto: RecipeDto
@@ -35,25 +31,24 @@ class RecipeDetails : AppCompatActivity() {
         fun bindViews() {
             fun bindIngredientsList() = binding.ingredientListView.apply {
                 adapter = IngredientAdapter(recipeDto.ingredients)
-                layoutManager = LinearLayoutManager(this@RecipeDetails)
-                addVerticalSpaceDivider(5)
+                layoutManager = LinearLayoutManager(this@RecipeDetailsActivity)
+                addVerticalSpaceDivider(5.0)
             }
 
             fun bindPreparationSteps() = binding.ingredientPreparationSteps.apply {
                 adapter = StepsAdapter(recipeDto.getPreparations())
-                layoutManager = LinearLayoutManager(this@RecipeDetails)
-                addVerticalSpaceDivider(10)
+                layoutManager = LinearLayoutManager(this@RecipeDetailsActivity)
+                addVerticalSpaceDivider(10.0)
             }
-            binding.recipeTitle.text = recipeDto.title
-            binding.recipePrepTime.text = String.format("%s min.", recipeDto.prepTime)
+            binding.title.text = recipeDto.title
+            binding.details.prepTime.text = String.format("%s min.", recipeDto.prepTime)
 
             val priceString = DecimalFormat("0.00").format(recipeDto.price)
-            binding.recipePrice.text = String.format("%s PLN", priceString)
+            binding.details.price.text = String.format("%s PLN", priceString)
 
 
             bindIngredientsList()
             bindPreparationSteps()
-
 
             Picasso.with(this)
                     .load(recipeDto.pictureUrl)
@@ -162,8 +157,3 @@ class RecipeDetails : AppCompatActivity() {
 
     }
 }
-
-
-
-
-
