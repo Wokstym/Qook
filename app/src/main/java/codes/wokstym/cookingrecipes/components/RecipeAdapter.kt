@@ -1,7 +1,6 @@
 package codes.wokstym.cookingrecipes.components
 
 import android.content.Context
-import android.graphics.PorterDuff
 import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +8,10 @@ import android.view.View.OnLongClickListener
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import codes.wokstym.cookingrecipes.databinding.ItemRecipeBinding
-import codes.wokstym.cookingrecipes.models.MealTime
 import codes.wokstym.cookingrecipes.models.RecipeDto
+import codes.wokstym.cookingrecipes.utils.dpToPx
+import codes.wokstym.cookingrecipes.utils.recipe
+import com.squareup.picasso.Picasso
 import java.text.DecimalFormat
 import java.util.*
 
@@ -19,7 +20,11 @@ class RecipeAdapter(
         private val objects: List<RecipeDto>) : RecyclerView.Adapter<RecipeAdapter.NewRecipeViewHolder>() {
 
     private val selectedItemsPositions: SparseBooleanArray = SparseBooleanArray()
-    private var onItemClick: OnItemClick? = null
+    var onItemClick: OnItemClick? = null
+
+    init {
+        setHasStableIds(true)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewRecipeViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(context)
@@ -31,6 +36,11 @@ class RecipeAdapter(
 
     override fun getItemCount() = objects.size
 
+    override fun getItemId(position: Int): Long {
+        val product: RecipeDto = objects[position]
+        return product.id.mostSignificantBits and Long.MAX_VALUE
+    }
+
     val selectedItems: List<RecipeDto>
         get() {
             val items: MutableList<RecipeDto> = ArrayList()
@@ -41,6 +51,9 @@ class RecipeAdapter(
             }
             return items
         }
+
+    val selectedItemsCount: Int
+        get() = selectedItemsPositions.size()
 
     fun clearSelection() {
         selectedItemsPositions.clear()
@@ -56,10 +69,6 @@ class RecipeAdapter(
         notifyItemChanged(position)
     }
 
-    fun selectedItemCount(): Int {
-        return selectedItemsPositions.size()
-    }
-
     inner class NewRecipeViewHolder(private val binding: ItemRecipeBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener, OnLongClickListener {
         init {
             itemView.setOnClickListener(this)
@@ -68,64 +77,52 @@ class RecipeAdapter(
 
         fun bindData(position: Int) {
             val recipe = objects[position]
-            val mealTime = recipe.mealTime
-            binding.recipeTitle.text = recipe.title
-            binding.recipePrepTime.text = String.format("%s min.", recipe.prepTime)
+            binding.title.text = recipe.title
+            binding.details.prepTime.text = String.format("%s min.", recipe.prepTime)
+            binding.mealTime.text = context.getString(recipe.mealTime.nameResourceId)
 
             val priceString = DecimalFormat("0.00").format(recipe.price)
-            binding.recipePrice.text = String.format("%s PLN", priceString)
+            binding.details.price.text = String.format("%s PLN", priceString)
 
-            binding.recipeListItemParent.isActivated = selectedItemsPositions[position]
-            setMealTimeIconData(mealTime)
-            toggleIcon(position)
+            setMealPicture(recipe.pictureUrl)
+            toggleBorder(position)
         }
 
-        private fun setMealTimeIconData(mealTime: MealTime) {
-            binding.mealTimeIcon.setImageResource(mealTime.iconResourceID)
-            val colorID = context.getColor(mealTime.colorResourceID)
-            binding.mealTimeIcon.background.setColorFilter(colorID, PorterDuff.Mode.SRC_IN)
+        private fun setMealPicture(url: String) {
+            Picasso.with(context)
+                    .load(url)
+                    .recipe()
+                    .into(binding.picture)
         }
 
-        private fun toggleIcon(position: Int) {
+        private fun toggleBorder(position: Int) {
             if (selectedItemsPositions[position]) {
-                toggleCheckMark()
+                toggleVisibleBorder()
             } else {
-                toggleMealTimeIcon()
+                toggleNoBorder()
             }
         }
 
-        private fun toggleMealTimeIcon() {
-            binding.mealTimeIcon.visibility = View.VISIBLE
-            binding.checkmark.visibility = View.GONE
+        private fun toggleNoBorder() {
+            binding.pictureCardview.strokeWidth = 0
         }
 
-        private fun toggleCheckMark() {
-            binding.mealTimeIcon.visibility = View.GONE
-            binding.checkmark.visibility = View.VISIBLE
+        private fun toggleVisibleBorder() {
+            binding.pictureCardview.strokeWidth = context.dpToPx(3.0)
         }
 
         override fun onClick(v: View) {
-            if (onItemClick != null) {
-                val position = adapterPosition
-                onItemClick!!.onItemClick(v, objects[position], position)
-            }
+            onItemClick?.onItemClick(v, objects[adapterPosition], adapterPosition)
         }
 
         override fun onLongClick(v: View): Boolean {
-            if (onItemClick == null) return false
-            val position = adapterPosition
-            onItemClick!!.onLongPress(v, objects[position], position)
-            return true
+            onItemClick?.onLongPress(v, objects[adapterPosition], adapterPosition)
+            return onItemClick != null
         }
     }
 
     interface OnItemClick {
         fun onItemClick(view: View?, recipe: RecipeDto?, position: Int)
         fun onLongPress(view: View?, recipe: RecipeDto?, position: Int)
-
-    }
-
-    fun setOnItemClick(onItemClick: OnItemClick?) {
-        this.onItemClick = onItemClick
     }
 }

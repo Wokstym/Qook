@@ -31,14 +31,14 @@ fun View.setTopMargin(top: Int) {
 
 }
 
-fun View.dpToPx(dp: Float): Int = context.dpToPx(dp)
-fun View.pxToDp(dp: Float): Int = context.dpToPx(dp)
+fun View.dpToPx(dp: Double): Int = context.dpToPx(dp)
+fun View.pxToDp(dp: Double): Int = context.pxToDp(dp)
 
-fun Context.dpToPx(dp: Float): Int =
+fun Context.dpToPx(dp: Double): Int =
         (dp * Resources.getSystem().displayMetrics.density).toInt()
 
 
-fun Context.pxToDp(px: Float): Int =
+fun Context.pxToDp(px: Double): Int =
         (px / Resources.getSystem().displayMetrics.density).toInt()
 
 inline fun <reified T> Context.startIntent(vararg extras: Pair<String, Serializable>) {

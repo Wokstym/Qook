@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/AppTheme.NoActionBar">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintTop_toTopOf="parent">
 
 
@@ -23,38 +24,53 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+
+    <!--<TextView
+             android:id="@+id/recipe_label"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:paddingVertical="10dp"
+             android:text="@string/recipe_list"
+             android:textSize="20sp"
+             android:textStyle="bold"
+             app:layout_constraintTop_toTopOf="parent" />-->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recipe_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appbar" />
+        app:layout_constraintTop_toBottomOf="@+id/appbar"
+        tools:layoutManager="GridLayoutManager"
+        tools:listitem="@layout/item_recipe"
+        tools:spanCount="2" />
+
 
     <Button
         android:id="@+id/recipe_list_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/generate_shopping_list"
-        android:background="@drawable/corners"
         android:layout_marginBottom="20dp"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/corners"
+        android:backgroundTint="#69a1ff"
+        android:drawableStart="@drawable/ic_utensils"
+        android:drawablePadding="10dp"
+        android:paddingHorizontal="10dp"
+        android:text="@string/generate_shopping_list"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:drawableStart="@drawable/ic_utensils"
-        android:backgroundTint="#69a1ff"
-        android:drawablePadding="10dp"
-        android:visibility="gone"
-        android:paddingHorizontal="10dp"
-        android:animateLayoutChanges="true" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <ProgressBar
-        android:layout_weight="1"
         android:id="@+id/progress_bar"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="40dp"
+        android:layout_weight="1"
         android:minWidth="40dp"
+        android:minHeight="40dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

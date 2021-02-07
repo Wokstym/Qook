@@ -38,56 +38,24 @@
             android:padding="20dp">
 
             <TextView
-                android:id="@+id/recipe_title"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
+                android:paddingBottom="8dp"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 tools:text="Orzechowy koktajl" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <include
+                android:id="@+id/details"
+                layout="@layout/recipe_detail"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="8dp"
-                android:showDividers="middle">
+                android:layout_gravity="center" />
 
 
-                <TextView
-                    android:id="@+id/recipe_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:textSize="15sp"
-                    tools:text="2.50 PLN" />
-
-                <Space
-                    android:layout_width="11dp"
-                    android:layout_height="wrap_content" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/divider"
-                    android:textSize="15sp" />
-
-                <Space
-                    android:layout_width="11dp"
-                    android:layout_height="wrap_content" />
-
-
-                <TextView
-                    android:id="@+id/recipe_prep_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:textSize="15sp"
-                    tools:text="10 min." />
-            </LinearLayout>
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

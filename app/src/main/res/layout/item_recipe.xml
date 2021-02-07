@@ -1,111 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/recipe_list_item_parent"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:layout_marginStart="10dp"
-    android:background="@drawable/corners"
+    android:layout_height="300dp"
     android:backgroundTint="@color/recipe_state"
-    android:orientation="horizontal">
+    android:orientation="vertical"
+    tools:showIn="@layout/activity_recipe_list">
 
-    <ImageView
-        android:id="@+id/meal_time_icon"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_margin="8dp"
-        android:background="@drawable/circle"
-        android:contentDescription="@string/meal_time_icon"
-        android:padding="10dp"
-        android:src="@drawable/ic_wine_glass"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/checkmark"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_margin="8dp"
-        android:background="@drawable/circle"
-        android:backgroundTint="@color/check_mark_bg"
-        android:contentDescription="@string/meal_time_icon"
-        android:padding="10dp"
-        android:src="@drawable/ic_check"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white" />
-
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/picture_cardview"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginStart="84dp"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/meal_time_icon"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="250dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/colorPrimary">
 
-        <TextView
-            android:id="@+id/recipe_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Jajecznica" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/picture"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/corners"
+                android:contentDescription="@string/recipe_picture"
+                android:outlineProvider="background"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/placeholder" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/meal_time"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="2dp"
-                android:paddingVertical="5dp">
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="10dp"
+                android:background="@drawable/corners"
+                android:backgroundTint="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingVertical="5dp"
+                android:textColor="@color/white"
+                tools:text="Breakfast" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:id="@+id/recipe_prep_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="7" />
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textColor="#313131"
+        android:textSize="16sp"
+        tools:text="Jajecznica" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" min. / " />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:paddingVertical="5dp">
-
-
-                <TextView
-                    android:id="@+id/recipe_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="10" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" zł" />
-            </LinearLayout>
-
-        </LinearLayout>
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:id="@+id/details"
+        layout="@layout/recipe_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start" />
+</LinearLayout>

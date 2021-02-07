@@ -6,7 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import codes.wokstym.cookingrecipes.R
 import codes.wokstym.cookingrecipes.components.RecipeAdapter
 import codes.wokstym.cookingrecipes.databinding.ActivityRecipeListBinding
@@ -15,7 +15,6 @@ import codes.wokstym.cookingrecipes.models.ShoppingListDto
 import codes.wokstym.cookingrecipes.tasks.GetRecipesTask
 import codes.wokstym.cookingrecipes.tasks.GetShoppingListTask
 import codes.wokstym.cookingrecipes.utils.*
-import java.util.stream.Collectors
 
 class RecipeListActivity : AppCompatActivity() {
 
@@ -52,9 +51,9 @@ class RecipeListActivity : AppCompatActivity() {
 
     private fun fetchShoppingList() {
         val selectedItemPositions = recipeAdapter.selectedItems
-        val recipesUUIDs = selectedItemPositions.stream()
+        val recipesUUIDs = selectedItemPositions
                 .map(RecipeDto::id)
-                .collect(Collectors.toList())
+                .toList()
         binding.progressBar.show()
         GetShoppingListTask(this).execute(recipesUUIDs)
     }
@@ -65,19 +64,18 @@ class RecipeListActivity : AppCompatActivity() {
         prepareAdapter(sorted)
     }
 
-    private fun prepareRecyclerView(recipeList: List<RecipeDto>) {
-        binding.recipeRecyclerView.apply {
-            adapter = RecipeAdapter(this@RecipeListActivity, recipeList)
-            layoutManager = LinearLayoutManager(this@RecipeListActivity)
-            addVerticalSpaceDivider(5)
-        }
-    }
+    private fun prepareRecyclerView(recipeList: List<RecipeDto>) =
+            binding.recipeRecyclerView.apply {
+                adapter = RecipeAdapter(this@RecipeListActivity, recipeList)
+                layoutManager = GridLayoutManager(this@RecipeListActivity, 2)
+                addGridSpaceDivider(10.0)
+            }
 
     private fun prepareAdapter(recipeList: List<RecipeDto>) {
         recipeAdapter = binding.recipeRecyclerView.adapter as RecipeAdapter
-        recipeAdapter.setOnItemClick(object : RecipeAdapter.OnItemClick {
+        recipeAdapter.onItemClick = (object : RecipeAdapter.OnItemClick {
             override fun onItemClick(view: View?, recipe: RecipeDto?, position: Int) {
-                if (recipeAdapter.selectedItemCount() > 0) {
+                if (recipeAdapter.selectedItemsCount > 0) {
                     toggleActionBar(position)
                 } else {
                     goToRecipeDetails(position, recipeList)
@@ -98,12 +96,12 @@ class RecipeListActivity : AppCompatActivity() {
     }
 
     private fun goToRecipeDetails(position: Int, recipeList: List<RecipeDto>) {
-        startIntent<RecipeDetailsActivity>(Pair(ExtraUtils.RECIPE_EXTRA, recipeList[position]))
+        startIntent<RecipeDetailsActivity>(Pair(RECIPE_EXTRA, recipeList[position]))
     }
 
     private fun toggleSelection(position: Int) {
         recipeAdapter.toggleSelection(position)
-        val count = recipeAdapter.selectedItemCount()
+        val count = recipeAdapter.selectedItemsCount
         if (count == 0) {
             actionMode?.finish()
         } else {
@@ -113,7 +111,7 @@ class RecipeListActivity : AppCompatActivity() {
     }
 
     fun showShoppingList(shoppingList: ShoppingListDto) {
-        startIntent<ShoppingListActivity>(Pair(ExtraUtils.SHOPPING_LIST_EXTRA, shoppingList))
+        startIntent<ShoppingListActivity>(Pair(SHOPPING_LIST_EXTRA, shoppingList))
     }
 
     inner class ActionCallback : ActionMode.Callback {
@@ -121,10 +119,9 @@ class RecipeListActivity : AppCompatActivity() {
         override fun onCreateActionMode(mode: ActionMode, menu: Menu?): Boolean {
             toggleStatusBarColor()
             mode.menuInflater.inflate(R.menu.menu, menu)
-            binding.recipeListButton.visibility = View.VISIBLE
+            binding.recipeListButton.show()
             return true
         }
-
 
         override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?) = false
 
@@ -135,8 +132,7 @@ class RecipeListActivity : AppCompatActivity() {
         override fun onDestroyActionMode(mode: ActionMode?) {
             recipeAdapter.clearSelection()
             actionMode = null
-            binding.recipeListButton.visibility = View.GONE
-
+            binding.recipeListButton.hide()
             toggleStatusBarColor()
         }
     }
