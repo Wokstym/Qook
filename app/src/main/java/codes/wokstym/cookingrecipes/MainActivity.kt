@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import codes.wokstym.cookingrecipes.databinding.ActivityMainBinding
 import codes.wokstym.cookingrecipes.utils.startIntent
 import codes.wokstym.cookingrecipes.views.RecipeListActivity
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
