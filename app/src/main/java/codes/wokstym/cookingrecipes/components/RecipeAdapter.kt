@@ -108,7 +108,7 @@ class RecipeAdapter(
         }
 
         private fun toggleVisibleBorder() {
-            binding.pictureCardview.strokeWidth = context.dpToPx(3.0)
+            binding.pictureCardview.strokeWidth = dpToPx(3.0)
         }
 
         override fun onClick(v: View) {

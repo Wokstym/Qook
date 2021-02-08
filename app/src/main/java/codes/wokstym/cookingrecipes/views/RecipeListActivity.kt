@@ -24,7 +24,6 @@ class RecipeListActivity : AppCompatActivity() {
     private lateinit var recipeAdapter: RecipeAdapter
     private var actionMode: ActionMode? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRecipeListBinding.inflate(layoutInflater)
@@ -96,7 +95,7 @@ class RecipeListActivity : AppCompatActivity() {
     }
 
     private fun goToRecipeDetails(position: Int, recipeList: List<RecipeDto>) {
-        startIntent<RecipeDetailsActivity>(Pair(RECIPE_EXTRA, recipeList[position]))
+        startRecipeDetailsActivity(recipeList[position])
     }
 
     private fun toggleSelection(position: Int) {
@@ -111,7 +110,7 @@ class RecipeListActivity : AppCompatActivity() {
     }
 
     fun showShoppingList(shoppingList: ShoppingListDto) {
-        startIntent<ShoppingListActivity>(Pair(SHOPPING_LIST_EXTRA, shoppingList))
+        startShoppingListActivity(shoppingList)
     }
 
     inner class ActionCallback : ActionMode.Callback {

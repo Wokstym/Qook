@@ -3,8 +3,7 @@ package codes.wokstym.cookingrecipes
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import codes.wokstym.cookingrecipes.databinding.ActivityMainBinding
-import codes.wokstym.cookingrecipes.utils.startIntent
-import codes.wokstym.cookingrecipes.views.RecipeListActivity
+import codes.wokstym.cookingrecipes.utils.startRecipeListActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -18,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initComponents() {
         binding.recipeListButton.setOnClickListener {
-            startIntent<RecipeListActivity>()
+            startRecipeListActivity()
         }
     }
 }
