@@ -3,9 +3,8 @@ package codes.wokstym.cookingrecipes
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import codes.wokstym.cookingrecipes.databinding.ActivityMainBinding
-import codes.wokstym.cookingrecipes.utils.startIntent
-import codes.wokstym.cookingrecipes.views.RecipeListActivity
 import dagger.hilt.android.HiltAndroidApp
+import codes.wokstym.cookingrecipes.utils.startRecipeListActivity
 
 @HiltAndroidApp
 class MainActivity : AppCompatActivity() {
@@ -20,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initComponents() {
         binding.recipeListButton.setOnClickListener {
-            startIntent<RecipeListActivity>()
+            startRecipeListActivity()
         }
     }
 }
