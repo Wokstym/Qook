@@ -11,7 +11,7 @@ import com.squareup.picasso.RequestCreator
 fun RequestCreator.recipe(): RequestCreator {
     return placeholder(R.drawable.placeholder)
             .fit()
-            .centerCrop() //option
+            .centerCrop()
 }
 
 fun RecyclerView.addVerticalSpaceDivider(dpSize: Double) {

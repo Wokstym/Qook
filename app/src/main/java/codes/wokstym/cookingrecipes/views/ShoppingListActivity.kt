@@ -8,8 +8,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import codes.wokstym.cookingrecipes.components.IngredientAdapter
 import codes.wokstym.cookingrecipes.databinding.ShoppinListBinding
-import codes.wokstym.cookingrecipes.models.ShoppingListDto
-import codes.wokstym.cookingrecipes.utils.SHOPPING_LIST_EXTRA
+import codes.wokstym.cookingrecipes.utils.getShoppingListExtra
 
 class ShoppingListActivity : Activity() {
     private lateinit var binding: ShoppinListBinding
@@ -19,7 +18,7 @@ class ShoppingListActivity : Activity() {
         binding = ShoppinListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val shoppingList = intent.getSerializableExtra(SHOPPING_LIST_EXTRA) as ShoppingListDto
+        val shoppingList = intent.getShoppingListExtra()
 
         binding.ingredientListView.apply {
             adapter = IngredientAdapter(shoppingList.ingredientList)

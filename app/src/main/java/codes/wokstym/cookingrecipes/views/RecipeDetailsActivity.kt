@@ -26,7 +26,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
         binding = ActivityRecipeDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        recipeDto = intent.getSerializableExtra(RECIPE_EXTRA) as RecipeDto
+        recipeDto = intent.getRecipeExtra()
 
         fun bindViews() {
             fun bindIngredientsList() = binding.ingredientListView.apply {
