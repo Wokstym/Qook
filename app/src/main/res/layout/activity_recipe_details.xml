@@ -35,6 +35,7 @@
             android:animateLayoutChanges="true"
             android:background="@drawable/top_corners"
             android:orientation="vertical"
+            android:backgroundTint="@color/colorPrimary"
             android:padding="20dp">
 
             <TextView

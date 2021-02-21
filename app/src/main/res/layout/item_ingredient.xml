@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="10dp"
         android:text="@string/dot"
-        android:textColor="#53984A"
+        android:textColor="@color/colorAccent"
         android:textSize="20sp"
         android:textStyle="bold" />
 

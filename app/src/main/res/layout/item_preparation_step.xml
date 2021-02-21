@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/corners"
-    android:backgroundTint="#EBF8E1"
+    android:backgroundTint="@color/cookingStepsBackgroundColor"
     android:gravity="center_vertical"
     android:orientation="vertical"
     android:padding="20dp"
@@ -14,7 +14,7 @@
         android:id="@+id/step"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#53984A"
+        android:textColor="@color/cookingStepsLabelColor"
         android:textStyle="bold"
         tools:text="Step %s" />
 

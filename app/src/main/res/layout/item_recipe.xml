@@ -16,7 +16,7 @@
         android:layout_height="250dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="0dp"
-        app:strokeColor="@color/colorPrimary">
+        app:strokeColor="@color/colorAccent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -26,7 +26,6 @@
                 android:id="@+id/picture"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/corners"
                 android:contentDescription="@string/recipe_picture"
                 android:outlineProvider="background"
                 android:scaleType="centerCrop"
@@ -43,10 +42,9 @@
                 android:layout_alignParentBottom="true"
                 android:layout_margin="10dp"
                 android:background="@drawable/corners"
-                android:backgroundTint="@color/colorPrimary"
+                android:backgroundTint="@color/colorAccent"
                 android:gravity="center"
                 android:paddingVertical="5dp"
-                android:textColor="@color/white"
                 tools:text="Breakfast" />
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -56,9 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:textColor="#313131"
-        android:textSize="16sp"
         android:maxLines="2"
+        android:textSize="16sp"
         tools:text="Jajecznica" />
 
     <include
