@@ -21,13 +21,13 @@ class ShoppingListActivity : Activity() {
         val shoppingList = intent.getShoppingListExtra()
 
         binding.ingredientListView.apply {
-            adapter = IngredientAdapter(shoppingList.ingredientList)
+            adapter = IngredientAdapter(this@ShoppingListActivity, shoppingList.ingredientList)
             layoutManager = LinearLayoutManager(this@ShoppingListActivity)
         }
 
         binding.recipeListButton.setOnClickListener {
             val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("Ingredient list", shoppingList.toString())
+            val clip = ClipData.newPlainText("Ingredient list", shoppingList.formatClipboard(this))
             clipboard.setPrimaryClip(clip)
         }
     }

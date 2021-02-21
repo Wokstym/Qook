@@ -10,8 +10,10 @@ class GridSpaceItemDecoration(private val spanCount: Int, private val spacing: I
         val position = parent.getChildAdapterPosition(view)
         val column = position % spanCount
 
-        outRect.left = spacing - column * spacing / spanCount
-        outRect.right = (column + 1) * spacing / spanCount
+        if (column != 0)
+            outRect.left = spacing - column * spacing / spanCount
+        if (column != spanCount - 1)
+            outRect.right = (column + 1) * spacing / spanCount
 
         if (position < spanCount) {
             outRect.top = spacing

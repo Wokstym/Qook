@@ -1,20 +1,13 @@
 package codes.wokstym.cookingrecipes.models
 
+import android.content.Context
 import java.io.Serializable
 
 class ShoppingListDto(val ingredientList: List<IngredientDto>) : Serializable {
 
-    override fun toString(): String {
-        val result: StringBuilder = StringBuilder()
+    fun formatClipboard(context: Context): String =
+            ingredientList.joinToString(separator = "\n") {
+                "${it.name} - ${it.amount} ${context.getString(it.unit.nameResourceId)}"
+            }
 
-        ingredientList.forEach {
-            result.append(it.name)
-                    .append(" - ")
-                    .append(it.name)
-                    .append(" ")
-                    .append(it.unit.polishName)
-                    .append(" \n")
-        }
-        return result.toString()
-    }
 }

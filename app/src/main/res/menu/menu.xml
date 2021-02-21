@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu>
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--    todo proper menu-->
+    <item android:title="Sort by">
+        <menu>
+            <item android:title="Name" />
+            <item android:title="Title" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/add"
+        android:title="Add recipe" />
 </menu>

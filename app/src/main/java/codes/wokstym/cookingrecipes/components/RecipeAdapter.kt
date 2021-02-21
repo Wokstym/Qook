@@ -17,10 +17,10 @@ import java.util.*
 
 class RecipeAdapter(
         private val context: Context,
-        private val objects: List<RecipeDto>) : RecyclerView.Adapter<RecipeAdapter.NewRecipeViewHolder>() {
+        private val objects: List<RecipeDto>,
+        var onItemClick: OnItemClick? = null) : RecyclerView.Adapter<RecipeAdapter.NewRecipeViewHolder>() {
 
     private val selectedItemsPositions: SparseBooleanArray = SparseBooleanArray()
-    var onItemClick: OnItemClick? = null
 
     init {
         setHasStableIds(true)
@@ -104,11 +104,11 @@ class RecipeAdapter(
         }
 
         private fun toggleNoBorder() {
-            binding.pictureCardview.strokeWidth = 0
+            binding.pictureCardView.strokeWidth = 0
         }
 
         private fun toggleVisibleBorder() {
-            binding.pictureCardview.strokeWidth = dpToPx(3.0)
+            binding.pictureCardView.strokeWidth = dpToPx(3.0)
         }
 
         override fun onClick(v: View) {
@@ -122,7 +122,7 @@ class RecipeAdapter(
     }
 
     interface OnItemClick {
-        fun onItemClick(view: View?, recipe: RecipeDto?, position: Int)
-        fun onLongPress(view: View?, recipe: RecipeDto?, position: Int)
+        fun onItemClick(view: View, recipe: RecipeDto, position: Int)
+        fun onLongPress(view: View, recipe: RecipeDto, position: Int)
     }
 }

@@ -5,7 +5,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionModeOverlay">true</item>
-        <item name="android:actionModeBackground">@color/colorPrimary</item>
+        <item name="android:actionModeBackground">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:fontFamily">@font/product_sans</item>
     </style>
 
     <style name="AppTheme.TranslucentActionBar" parent="AppTheme">
@@ -14,9 +16,20 @@
 
     </style>
 
-    <style name="AppTheme.NoActionBar" parent="AppTheme">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="WhiteToolbarStyle">
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <!--  components styles  -->
+
+    <style name="RoundedBottomCardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomRight">25dp</item>
+        <item name="cornerSizeBottomLeft">25dp</item>
+        <item name="contentPadding">0dp</item>
     </style>
 
 </resources>
