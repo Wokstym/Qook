@@ -89,10 +89,12 @@ class RecipeAdapter(
         }
 
         private fun setMealPicture(url: String) {
-            Picasso.with(context)
-                    .load(url)
-                    .recipe()
-                    .into(binding.picture)
+            /* don't reload picture if already set */
+            if (binding.picture.drawable == null)
+                Picasso.with(context)
+                        .load(url)
+                        .recipe()
+                        .into(binding.picture)
         }
 
         private fun toggleBorder(position: Int) {
