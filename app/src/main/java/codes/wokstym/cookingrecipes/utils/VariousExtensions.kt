@@ -1,6 +1,9 @@
 package codes.wokstym.cookingrecipes.utils
 
+import android.app.Activity
+import android.util.Log
 import android.view.View
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import codes.wokstym.cookingrecipes.R
@@ -31,4 +34,22 @@ fun View.show() {
 
 fun View.hide() {
     visibility = View.GONE
+}
+
+fun Activity.showProgressBar() {
+    try {
+        val progressBar: ProgressBar = findViewById(R.id.progress_bar)
+        progressBar.show()
+    } catch (_: NullPointerException) {
+        Log.e("progress bar", "No progress bar detected")
+    }
+}
+
+fun Activity.hideProgressBar() {
+    try {
+        val progressBar: ProgressBar = findViewById(R.id.progress_bar)
+        progressBar.hide()
+    } catch (_: NullPointerException) {
+        Log.e("progress bar", "No progress bar detected")
+    }
 }

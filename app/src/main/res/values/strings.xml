@@ -1,18 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CookingRecipes</string>
-    <string name="recipe_list">Lista przepisów</string>
+    <string name="app_name" translatable="false">Qook</string>
     <string name="meal_time_icon" translatable="false">Meal time icon</string>
-    <string name="generate_shopping_list">Wygeneruj liste zakupów</string>
-    <string name="breakfast_name">Śniadanie</string>
-    <string name="second_breakfast_name">Drugie Śniadanie</string>
-    <string name="dinner_name">Obiad</string>
-    <string name="snack_name">Przekąska</string>
-    <string name="supper_name">Kolacja</string>
     <string name="title_activity_recipe_details" translatable="false">RecipeDetails</string>
     <string name="recipe_picture" translatable="false">Picture of image</string>
     <string name="divider" translatable="false">|</string>
-    <string name="ingredients_label">Składniki</string>
-    <string name="step_label">Krok %s</string>
-    <string name="preparation_label">Przygotowanie</string>
     <string name="dot" translatable="false">•</string>
+    <string name="recipe_list">Recipe list</string>
+    <string name="generate_shopping_list">Generate shopping list</string>
+    <string name="breakfast_name">Breakfast</string>
+    <string name="second_breakfast_name">Lunch</string>
+    <string name="dinner_name">Dinner</string>
+    <string name="snack_name">Snack</string>
+    <string name="supper_name">Supper</string>
+    <string name="ingredients_label">Ingredients</string>
+    <string name="step_label">Step %s</string>
+    <string name="preparation_label">Preparation</string>
+    <string name="greetings">Hi, </string>
+    <string name="user_name">User name</string>
+    <string name="user_profile_picture">User profile picture</string>
+    <string name="gram">gram</string>
+    <string name="spoon">spoon</string>
+    <string name="piece">piece</string>
+    <string name="ml">ml</string>
+    <string name="handful">handful</string>
 </resources>

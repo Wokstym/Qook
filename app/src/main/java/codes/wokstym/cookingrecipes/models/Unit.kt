@@ -1,9 +1,12 @@
 package codes.wokstym.cookingrecipes.models
 
-enum class Unit(val polishName: String) {
-    GRAM("gram"),
-    SPOON("łyżek"),
-    PIECE("sztuk"),
-    ML("ml"),
-    HANDFUL("garść")
+import androidx.annotation.StringRes
+import codes.wokstym.cookingrecipes.R
+
+enum class Unit(@StringRes val nameResourceId: Int) {
+    GRAM(R.string.gram),
+    SPOON(R.string.spoon),
+    PIECE(R.string.piece),
+    ML(R.string.ml),
+    HANDFUL(R.string.handful)
 }

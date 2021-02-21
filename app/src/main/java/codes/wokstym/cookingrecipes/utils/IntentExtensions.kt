@@ -4,13 +4,13 @@ import android.content.Context
 import android.content.Intent
 import codes.wokstym.cookingrecipes.models.RecipeDto
 import codes.wokstym.cookingrecipes.models.ShoppingListDto
+import codes.wokstym.cookingrecipes.views.AddRecipeActivity
 import codes.wokstym.cookingrecipes.views.RecipeDetailsActivity
-import codes.wokstym.cookingrecipes.views.RecipeListActivity
 import codes.wokstym.cookingrecipes.views.ShoppingListActivity
 
-fun Context.startRecipeListActivity() {
-    val intent = Intent(this, RecipeListActivity::class.java)
-    startActivity(intent)
+fun Context.startAddRecipeActivity() {
+    Intent(this, AddRecipeActivity::class.java)
+            .let(this::startActivity)
 }
 
 fun Context.startShoppingListActivity(shoppingList: ShoppingListDto) {

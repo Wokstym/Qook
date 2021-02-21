@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="recipe_list">Lista przepisów</string>
+    <string name="generate_shopping_list">Wygeneruj liste zakupów</string>
+    <string name="breakfast_name">Śniadanie</string>
+    <string name="second_breakfast_name">Lunch</string>
+    <string name="dinner_name">Obiad</string>
+    <string name="snack_name">Przekąska</string>
+    <string name="supper_name">Kolacja</string>
+    <string name="gram">gram</string>
+    <string name="spoon">łyżek</string>
+    <string name="piece">sztuk</string>
+    <string name="ml">ml</string>
+    <string name="handful">garść</string>
+    <string name="ingredients_label">Składniki</string>
+    <string name="step_label">Krok %s</string>
+    <string name="preparation_label">Przygotowanie</string>
+    <string name="greetings">Cześć, </string>
+    <string name="user_name">Imię użytkownika</string>
+    <string name="user_profile_picture">User profile picture</string>
+</resources>

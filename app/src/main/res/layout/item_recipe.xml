@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/recipe_list_item_parent"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="316dp"
     android:backgroundTint="@color/recipe_state"
     android:orientation="vertical"
     tools:showIn="@layout/activity_recipe_list">
 
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/picture_cardview"
+        android:id="@+id/picture_card_view"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         app:cardCornerRadius="15dp"
@@ -55,9 +55,10 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"
+        android:ellipsize="end"
         android:textColor="#313131"
         android:textSize="16sp"
+        android:maxLines="2"
         tools:text="Jajecznica" />
 
     <include

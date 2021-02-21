@@ -30,7 +30,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
 
         fun bindViews() {
             fun bindIngredientsList() = binding.ingredientListView.apply {
-                adapter = IngredientAdapter(recipeDto.ingredients)
+                adapter = IngredientAdapter(this@RecipeDetailsActivity, recipeDto.ingredients)
                 layoutManager = LinearLayoutManager(this@RecipeDetailsActivity)
                 addVerticalSpaceDivider(5.0)
             }

@@ -1,20 +1,22 @@
 package codes.wokstym.cookingrecipes.views
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import codes.wokstym.cookingrecipes.R
 import codes.wokstym.cookingrecipes.components.RecipeAdapter
 import codes.wokstym.cookingrecipes.databinding.ActivityRecipeListBinding
 import codes.wokstym.cookingrecipes.models.RecipeDto
-import codes.wokstym.cookingrecipes.models.ShoppingListDto
 import codes.wokstym.cookingrecipes.tasks.GetRecipesTask
 import codes.wokstym.cookingrecipes.tasks.GetShoppingListTask
 import codes.wokstym.cookingrecipes.utils.*
+import com.squareup.picasso.Picasso
 
 class RecipeListActivity : AppCompatActivity() {
 
@@ -31,71 +33,91 @@ class RecipeListActivity : AppCompatActivity() {
 
         fun initSupportBar() {
             setSupportActionBar(binding.toolbar)
-            supportActionBar!!.title = resources.getString(R.string.recipe_list)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
         }
 
         fun initListeners() {
             binding.recipeListButton.setOnClickListener { fetchShoppingList() }
         }
 
+        fun setProfile() { // TODO: replace with user data
+            @SuppressLint("SetTextI18n")
+            binding.userName.text = "Grzegorz Poręba"
+            Picasso.with(this)
+                    .load("https://avatars.githubusercontent.com/u/44115112?s=460&u=2fea6d808fb949060aa499dad3e3365608bb5c40&v=4")
+                    .into(binding.userProfile)
+        }
+
         initSupportBar()
+        setProfile()
         initListeners()
         fetchRecipes()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) =
+            when (item.itemId) {
+                R.id.add -> {
+                    startAddRecipeActivity()
+                    true
+                }
+                else -> super.onOptionsItemSelected(item)
+            }
+
+
     private fun fetchRecipes() {
-        binding.progressBar.show()
+        showProgressBar()
         GetRecipesTask(this).execute()
     }
 
     private fun fetchShoppingList() {
-        val selectedItemPositions = recipeAdapter.selectedItems
-        val recipesUUIDs = selectedItemPositions
+        val recipesUUIDs = recipeAdapter.selectedItems
                 .map(RecipeDto::id)
                 .toList()
-        binding.progressBar.show()
+        showProgressBar()
         GetShoppingListTask(this).execute(recipesUUIDs)
     }
 
     fun showRecipes(recipeList: List<RecipeDto>) {
         val sorted = recipeList.sorted()
-        prepareRecyclerView(sorted)
         prepareAdapter(sorted)
+        prepareRecyclerView()
     }
 
-    private fun prepareRecyclerView(recipeList: List<RecipeDto>) =
-            binding.recipeRecyclerView.apply {
-                adapter = RecipeAdapter(this@RecipeListActivity, recipeList)
-                layoutManager = GridLayoutManager(this@RecipeListActivity, 2)
-                addGridSpaceDivider(10.0)
-            }
-
     private fun prepareAdapter(recipeList: List<RecipeDto>) {
-        recipeAdapter = binding.recipeRecyclerView.adapter as RecipeAdapter
-        recipeAdapter.onItemClick = (object : RecipeAdapter.OnItemClick {
-            override fun onItemClick(view: View?, recipe: RecipeDto?, position: Int) {
+        recipeAdapter = RecipeAdapter(this@RecipeListActivity, recipeList, object : RecipeAdapter.OnItemClick {
+            override fun onItemClick(view: View, recipe: RecipeDto, position: Int) {
                 if (recipeAdapter.selectedItemsCount > 0) {
                     toggleActionBar(position)
                 } else {
-                    goToRecipeDetails(position, recipeList)
+                    startRecipeDetailsActivity(recipe)
                 }
             }
 
-            override fun onLongPress(view: View?, recipe: RecipeDto?, position: Int) {
+            override fun onLongPress(view: View, recipe: RecipeDto, position: Int) {
                 toggleActionBar(position)
             }
         })
     }
+
+    private fun prepareRecyclerView() =
+            binding.recipeRecyclerView.apply {
+                adapter = recipeAdapter
+                layoutManager = GridLayoutManager(this@RecipeListActivity, 2)
+                (itemAnimator as DefaultItemAnimator).supportsChangeAnimations = false
+                addGridSpaceDivider(10.0)
+            }
+
 
     private fun toggleActionBar(position: Int) {
         if (actionMode == null) {
             actionMode = startSupportActionMode(actionCallback)
         }
         toggleSelection(position)
-    }
-
-    private fun goToRecipeDetails(position: Int, recipeList: List<RecipeDto>) {
-        startRecipeDetailsActivity(recipeList[position])
     }
 
     private fun toggleSelection(position: Int) {
@@ -109,14 +131,9 @@ class RecipeListActivity : AppCompatActivity() {
         }
     }
 
-    fun showShoppingList(shoppingList: ShoppingListDto) {
-        startShoppingListActivity(shoppingList)
-    }
-
     inner class ActionCallback : ActionMode.Callback {
 
         override fun onCreateActionMode(mode: ActionMode, menu: Menu?): Boolean {
-            toggleStatusBarColor()
             mode.menuInflater.inflate(R.menu.menu, menu)
             binding.recipeListButton.show()
             return true
@@ -124,19 +141,12 @@ class RecipeListActivity : AppCompatActivity() {
 
         override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?) = false
 
-
         override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?) = false
-
 
         override fun onDestroyActionMode(mode: ActionMode?) {
             recipeAdapter.clearSelection()
             actionMode = null
             binding.recipeListButton.hide()
-            toggleStatusBarColor()
         }
-    }
-
-    fun hideProgress() {
-        binding.progressBar.hide()
     }
 }
