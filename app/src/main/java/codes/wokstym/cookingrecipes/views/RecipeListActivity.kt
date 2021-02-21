@@ -134,7 +134,6 @@ class RecipeListActivity : AppCompatActivity() {
     inner class ActionCallback : ActionMode.Callback {
 
         override fun onCreateActionMode(mode: ActionMode, menu: Menu?): Boolean {
-            mode.menuInflater.inflate(R.menu.menu, menu)
             binding.recipeListButton.show()
             return true
         }
