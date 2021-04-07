@@ -13,6 +13,7 @@ import codes.wokstym.cookingrecipes.R
 import codes.wokstym.cookingrecipes.components.RecipeAdapter
 import codes.wokstym.cookingrecipes.databinding.ActivityRecipeListBinding
 import codes.wokstym.cookingrecipes.models.RecipeDto
+import codes.wokstym.cookingrecipes.models.ShoppingListDto
 import codes.wokstym.cookingrecipes.tasks.GetRecipesTask
 import codes.wokstym.cookingrecipes.tasks.GetShoppingListTask
 import codes.wokstym.cookingrecipes.utils.*
@@ -68,6 +69,9 @@ class RecipeListActivity : AppCompatActivity() {
                 else -> super.onOptionsItemSelected(item)
             }
 
+    fun startShoppingList(shoppingList: ShoppingListDto) {
+        startShoppingListActivity(shoppingList, ArrayList(recipeAdapter.selectedItems))
+    }
 
     private fun fetchRecipes() {
         showProgressBar()

@@ -13,9 +13,12 @@ fun Context.startAddRecipeActivity() {
             .let(this::startActivity)
 }
 
-fun Context.startShoppingListActivity(shoppingList: ShoppingListDto) {
+fun Context.startShoppingListActivity(shoppingList: ShoppingListDto, recipes: ArrayList<RecipeDto>) {
     Intent(this, ShoppingListActivity::class.java)
-            .apply { putShoppingListExtra(shoppingList) }
+            .apply {
+                putShoppingListExtra(shoppingList)
+                putRecipesListExtra(recipes)
+            }
             .let(this::startActivity)
 }
 
