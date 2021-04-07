@@ -10,7 +10,7 @@
 
 Qook is a simple app for storing recipes. You can choose what recipes do you want to cook today and generate shopping list based on that. Each recipe contains instructions, ingredients and steps required followed by picture of that recipe. 
 
-App is written in kotlin and connects to spring [boot backend](https://github.com/Wokstym/QookBackend) using retrofit and shows pictures with help of piccasso, which are stored in external [image4.io](https://image4.io) service. Backend uses spring data jpa to store data in postgres, all managed by docker containers.
+App is written in kotlin and connects to spring boot [backend](https://github.com/Wokstym/QookBackend) using retrofit and shows pictures with help of piccasso, which are stored in external [image4.io](https://image4.io) service. Backend uses spring data jpa to store data in postgres, all managed by docker containers.
 
 Currently app is hobby app tinkered with in free time to learn and preserve good practises aswell as build something usefull and pleasant to look at 
 
