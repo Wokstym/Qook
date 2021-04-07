@@ -4,7 +4,6 @@ import android.util.Log
 import codes.wokstym.cookingrecipes.models.ShoppingListDto
 import codes.wokstym.cookingrecipes.service.RecipeService
 import codes.wokstym.cookingrecipes.utils.hideProgressBar
-import codes.wokstym.cookingrecipes.utils.startShoppingListActivity
 import codes.wokstym.cookingrecipes.views.RecipeListActivity
 import retrofit2.Call
 import retrofit2.Response
@@ -20,7 +19,7 @@ class GetShoppingListTask(private val responseActivity: RecipeListActivity) : Ba
     override fun onResponse(call: Call<ShoppingListDto>, response: Response<ShoppingListDto>) {
         if (response.isSuccessful) {
             val shoppingList = response.body()!!
-            responseActivity.startShoppingListActivity(shoppingList)
+            responseActivity.startShoppingList(shoppingList)
         } else {
             Log.d("Przepis", response.errorBody().toString())
         }

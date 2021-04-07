@@ -18,4 +18,5 @@
     <string name="greetings">Cześć, </string>
     <string name="user_name">Imię użytkownika</string>
     <string name="user_profile_picture">User profile picture</string>
+    <string name="copy_to_clipboard">Skopiuj do schowka</string>
 </resources>

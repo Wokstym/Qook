@@ -24,4 +24,5 @@
     <string name="piece">piece</string>
     <string name="ml">ml</string>
     <string name="handful">handful</string>
+    <string name="copy_to_clipboard">Copy to ClipBoard</string>
 </resources>
