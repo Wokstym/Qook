@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.RecipeListActivity">
+        <activity
+            android:name=".views.RecipeListActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -24,7 +26,7 @@
             android:label="@string/title_activity_recipe_details"
             android:theme="@style/AppTheme.TranslucentActionBar" />
         <activity android:name=".views.ShoppingListActivity" />
-        <activity android:name=".views.AddRecipeActivity" />
+        <activity android:name=".views.addrecipe.AddRecipeActivity" />
     </application>
 
 </manifest>

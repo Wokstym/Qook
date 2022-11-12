@@ -6,14 +6,16 @@ import java.math.BigDecimal
 import java.util.*
 
 @Parcelize
-data class RecipeDto(val id: UUID,
-                     val preparation: String,
-                     val ingredients: List<IngredientDto>,
-                     val mealTime: MealTime,
-                     val prepTime: Int,
-                     val price: BigDecimal,
-                     val title: String,
-                     val pictureUrl: String) : Comparable<RecipeDto>, Parcelable {
+data class RecipeDto(
+    val id: UUID,
+    val preparation: String,
+    val ingredients: List<IngredientDto>,
+    val mealTime: MealTime,
+    val prepTime: Int,
+    val price: BigDecimal,
+    val title: String,
+    val pictureUrl: String?
+) : Comparable<RecipeDto>, Parcelable {
 
     fun getPreparations(): List<String> = preparation.split("\n").map { it.trim() }
 

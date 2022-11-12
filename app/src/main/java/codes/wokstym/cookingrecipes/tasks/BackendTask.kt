@@ -30,15 +30,37 @@ abstract class BackendTask<T, S> : Callback<T> {
                 .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
                 .create()
         val client = OkHttpClient.Builder()
-                .connectTimeout(45, TimeUnit.SECONDS)
-                .readTimeout(45, TimeUnit.SECONDS)
-                .writeTimeout(45, TimeUnit.SECONDS)
-                .build()
+            .connectTimeout(45, TimeUnit.SECONDS)
+            .readTimeout(45, TimeUnit.SECONDS)
+            .writeTimeout(45, TimeUnit.SECONDS)
+            .build()
         return Retrofit.Builder()
-                .baseUrl(BuildConfig.RecipesURL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(client)
-                .build()
+            .baseUrl(BuildConfig.RecipesURL)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(client)
+            .build()
     }
 
+}
+
+fun <S> createService(serviceClass: Class<S>): S {
+    val retrofit: Retrofit = prepareRetrofit()
+    return retrofit.create(serviceClass)
+}
+
+private fun prepareRetrofit(): Retrofit {
+    val gson = GsonBuilder()
+        .setLenient()
+        .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
+        .create()
+    val client = OkHttpClient.Builder()
+        .connectTimeout(45, TimeUnit.SECONDS)
+        .readTimeout(45, TimeUnit.SECONDS)
+        .writeTimeout(45, TimeUnit.SECONDS)
+        .build()
+    return Retrofit.Builder()
+        .baseUrl(BuildConfig.RecipesURL)
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .client(client)
+        .build()
 }

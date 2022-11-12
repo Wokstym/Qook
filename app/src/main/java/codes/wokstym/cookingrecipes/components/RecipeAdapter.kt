@@ -13,7 +13,6 @@ import codes.wokstym.cookingrecipes.utils.dpToPx
 import codes.wokstym.cookingrecipes.utils.recipe
 import com.squareup.picasso.Picasso
 import java.text.DecimalFormat
-import java.util.*
 
 class RecipeAdapter(
         private val context: Context,
@@ -88,13 +87,13 @@ class RecipeAdapter(
             toggleBorder(position)
         }
 
-        private fun setMealPicture(url: String) {
+        private fun setMealPicture(url: String?) {
             /* don't reload picture if already set */
             if (binding.picture.drawable == null)
                 Picasso.with(context)
-                        .load(url)
-                        .recipe()
-                        .into(binding.picture)
+                    .load(url)
+                    .recipe()
+                    .into(binding.picture)
         }
 
         private fun toggleBorder(position: Int) {

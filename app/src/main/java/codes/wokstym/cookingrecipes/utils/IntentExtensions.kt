@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.Intent
 import codes.wokstym.cookingrecipes.models.RecipeDto
 import codes.wokstym.cookingrecipes.models.ShoppingListDto
-import codes.wokstym.cookingrecipes.views.AddRecipeActivity
 import codes.wokstym.cookingrecipes.views.RecipeDetailsActivity
 import codes.wokstym.cookingrecipes.views.ShoppingListActivity
+import codes.wokstym.cookingrecipes.views.addrecipe.AddRecipeActivity
 
 fun Context.startAddRecipeActivity() {
     Intent(this, AddRecipeActivity::class.java)
