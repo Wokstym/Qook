@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id("kotlin-parcelize")
+    id("com.google.dagger.hilt.android")
+    kotlin("kapt")
 }
 
 android {
@@ -52,7 +54,14 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.20")

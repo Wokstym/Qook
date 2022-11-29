@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
@@ -15,30 +16,43 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModel
+import codes.wokstym.cookingrecipes.R
 import codes.wokstym.cookingrecipes.databinding.ActivityAddRecipeBinding
 import codes.wokstym.cookingrecipes.models.RecipeDto
 import codes.wokstym.cookingrecipes.service.NewRecipeDto
 import codes.wokstym.cookingrecipes.service.RecipeService
-import codes.wokstym.cookingrecipes.tasks.createService
 import codes.wokstym.cookingrecipes.utils.PLNPriceVisualTransformation
 import coil.compose.AsyncImage
 import com.google.android.material.composethemeadapter.MdcTheme
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
 val EASY_PRICE_REGEX = """\d{0,9}\.?\d?\d?""".toRegex()
 
 val STRICT_PRICE_REGEX = """\d{1,9}(\.\d{2})?""".toRegex()
 
+@HiltViewModel
+class AddRecipeViewModel @Inject constructor(
+    val recipeService: RecipeService
+) : ViewModel()
+
+@AndroidEntryPoint
 class AddRecipeActivity : AppCompatActivity() {
+
+    private val addRecipeViewModel: AddRecipeViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,8 +80,7 @@ class AddRecipeActivity : AppCompatActivity() {
         var imageUri by remember { mutableStateOf<Uri?>(null) }
 
         LaunchedEffect(true) {
-            val recipeService = createService(RecipeService::class.java)
-            mealTimes = recipeService.getMealTimes()
+            mealTimes = addRecipeViewModel.recipeService.getMealTimes()
         }
 
         val pickPictureLauncher = rememberLauncherForActivityResult(
@@ -109,9 +122,7 @@ class AddRecipeActivity : AppCompatActivity() {
                 )
             }
 
-
-            val recipeService = createService(RecipeService::class.java)
-            recipeService.addRecipe(
+            addRecipeViewModel.recipeService.addRecipe(
                 newRecipe, filePart
             ).enqueue(object : Callback<RecipeDto> {
                 override fun onResponse(call: Call<RecipeDto>, response: Response<RecipeDto>) {
@@ -198,13 +209,20 @@ class AddRecipeActivity : AppCompatActivity() {
                     Button(onClick = {
                         pickPictureLauncher.launch(arrayOf("image/*"))
                     }) {
-                        Text("XD")
+                        Text("Dodaj zdjęcie")
                     }
 
                     AsyncImage(
                         model = imageUri,
-                        contentDescription = null
+                        contentDescription = null,
+                        modifier = Modifier.height(with(LocalDensity.current) { 700.toDp() }),
+                        error = painterResource(R.drawable.placeholder)
                     )
+                    /*
+                    placeholder(R.drawable.placeholder)
+            .fit()
+            .centerCrop()
+                     */
 
 
                     Button(onClick = onClick, enabled = isSendEnabled()) {

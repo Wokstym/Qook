@@ -18,7 +18,9 @@ import codes.wokstym.cookingrecipes.tasks.GetRecipesTask
 import codes.wokstym.cookingrecipes.tasks.GetShoppingListTask
 import codes.wokstym.cookingrecipes.utils.*
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RecipeListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRecipeListBinding
@@ -45,8 +47,8 @@ class RecipeListActivity : AppCompatActivity() {
             @SuppressLint("SetTextI18n")
             binding.userName.text = "Grzegorz Poręba"
             Picasso.with(this)
-                    .load("https://avatars.githubusercontent.com/u/44115112?s=460&u=2fea6d808fb949060aa499dad3e3365608bb5c40&v=4")
-                    .into(binding.userProfile)
+                .load("https://avatars.githubusercontent.com/u/44115112?s=460&u=2fea6d808fb949060aa499dad3e3365608bb5c40&v=4")
+                .into(binding.userProfile)
         }
 
         initSupportBar()
@@ -61,13 +63,13 @@ class RecipeListActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem) =
-            when (item.itemId) {
-                R.id.add -> {
-                    startAddRecipeActivity()
-                    true
-                }
-                else -> super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.add -> {
+                startAddRecipeActivity()
+                true
             }
+            else -> super.onOptionsItemSelected(item)
+        }
 
     fun startShoppingList(shoppingList: ShoppingListDto) {
         startShoppingListActivity(shoppingList, ArrayList(recipeAdapter.selectedItems))
@@ -80,8 +82,8 @@ class RecipeListActivity : AppCompatActivity() {
 
     private fun fetchShoppingList() {
         val recipesUUIDs = recipeAdapter.selectedItems
-                .map(RecipeDto::id)
-                .toList()
+            .map(RecipeDto::id)
+            .toList()
         showProgressBar()
         GetShoppingListTask(this).execute(recipesUUIDs)
     }
@@ -109,12 +111,12 @@ class RecipeListActivity : AppCompatActivity() {
     }
 
     private fun prepareRecyclerView() =
-            binding.recipeRecyclerView.apply {
-                adapter = recipeAdapter
-                layoutManager = GridLayoutManager(this@RecipeListActivity, 2)
-                (itemAnimator as DefaultItemAnimator).supportsChangeAnimations = false
-                addGridSpaceDivider(10.0)
-            }
+        binding.recipeRecyclerView.apply {
+            adapter = recipeAdapter
+            layoutManager = GridLayoutManager(this@RecipeListActivity, 2)
+            (itemAnimator as DefaultItemAnimator).supportsChangeAnimations = false
+            addGridSpaceDivider(10.0)
+        }
 
 
     private fun toggleActionBar(position: Int) {
